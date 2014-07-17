@@ -1,4 +1,4 @@
-perl6-encode
+Encode
 ============
 
-Encode module for Perl 6
+Character encodings in Perl 6
