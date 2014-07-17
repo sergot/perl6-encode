@@ -23,6 +23,8 @@ my %encodings =
 
     'utf8'       => &utf8,
     'utf-8'      => &utf8,
+
+    'ascii'      => &ascii,
 ;
 
 our sub decode($encoding, buf8 $buf) {
@@ -41,4 +43,8 @@ sub latin1(buf8 $buf) {
 
 sub utf8(buf8 $buf) {
     $buf.decode('utf8');
+}
+
+sub ascii(buf8 $buf) {
+    $buf.decode('ascii');
 }
