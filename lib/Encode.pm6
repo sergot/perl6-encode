@@ -14,5 +14,5 @@ our sub decode($encoding, buf8 $buf) {
 }
 
 sub latin2(buf8 $buf) {
-    $buf.list.map({ %Encode::Latin2::map{$_} });
+    $buf.list.map({ %Encode::Latin2::map{$_} // $_ });
 }
