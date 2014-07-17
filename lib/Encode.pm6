@@ -15,6 +15,9 @@ my %encodings =
     'iso_8859-2' => &latin2,
     'latin2'     => &latin2,
     'latin-2'    => &latin2,
+
+    'utf8'       => &utf8,
+    'utf-8'      => &utf8,
 ;
 
 our sub decode($encoding, buf8 $buf) {
@@ -25,4 +28,8 @@ our sub decode($encoding, buf8 $buf) {
 
 sub latin2(buf8 $buf) {
     $buf.list.map({ %Encode::Latin2::map{$_} // $_ });
+}
+
+sub utf8(buf8 $buf) {
+    $buf.decode('utf8');
 }
