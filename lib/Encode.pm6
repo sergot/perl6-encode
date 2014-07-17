@@ -2,6 +2,14 @@ module Encode;
 
 use Encode::Latin2;
 
+my class X::Encode::Unknown is Exception {
+    has $.encoding;
+
+    method message {
+        "Unknown encoding $.encoding."
+    }
+}
+
 my %encodings =
     'iso-8859-2' => &latin2,
     'iso_8859-2' => &latin2,
@@ -10,7 +18,8 @@ my %encodings =
 ;
 
 our sub decode($encoding, buf8 $buf) {
-    die "$encoding NIY" unless %encodings{$encoding}.defined;
+    X::Encode::Unknown.new(:encoding($encoding)).throw unless %encodings{$encoding}.defined;
+
     &(%encodings{$encoding})($buf);
 }
 

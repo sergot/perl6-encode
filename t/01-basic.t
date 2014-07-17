@@ -5,5 +5,4 @@ use Test;
 
 plan 1;
 
-Encode::decode("niy-encoding", buf8.new(97)); 
-dies_ok { Encode::decode("niy-encoding", buf8.new(97)) }, 'dies if NIY'; 
+throws_like 'Encode::decode("nyi-encoding", buf8.new(97))', X::Encode::Unknown, message => 'Unknown encoding nyi-encoding.';
