@@ -7,10 +7,10 @@ my %encodings =
     'latin-2'    => &latin2,
 ;
 
-our sub decode($encoding, $text) {
-    &(%encodings{$encoding})($text);
+our sub decode($encoding, buf8 $buf) {
+    &(%encodings{$encoding})($buf);
 }
 
-sub latin2($text) {
+sub latin2(buf8 $buf) {
     ...
 }
