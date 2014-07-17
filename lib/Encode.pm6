@@ -10,6 +10,7 @@ my %encodings =
 ;
 
 our sub decode($encoding, buf8 $buf) {
+    die "$encoding NIY" unless %encodings{$encoding}.defined;
     &(%encodings{$encoding})($buf);
 }
 
