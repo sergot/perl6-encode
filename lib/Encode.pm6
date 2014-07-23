@@ -27,24 +27,24 @@ my %encodings =
     'ascii'      => &ascii,
 ;
 
-our sub decode($encoding, buf8 $buf) {
+our sub decode($encoding, Buf $buf) {
     X::Encode::Unknown.new(:encoding($encoding)).throw unless %encodings{$encoding}.defined;
 
     &(%encodings{$encoding})($buf);
 }
 
-sub latin2(buf8 $buf) {
+sub latin2(Buf $buf) {
     $buf.list.map({ %Encode::Latin2::map{$_} // $_ })>>.chr.join;
 }
 
-sub latin1(buf8 $buf) {
+sub latin1(Buf $buf) {
     $buf.decode('iso-8859-1');
 }
 
-sub utf8(buf8 $buf) {
+sub utf8(Buf $buf) {
     $buf.decode('utf8');
 }
 
-sub ascii(buf8 $buf) {
+sub ascii(Buf $buf) {
     $buf.decode('ascii');
 }
