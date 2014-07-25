@@ -1,6 +1,7 @@
 module Encode;
 
 use Encode::Latin2;
+use Encode::Windows1252;
 
 my class X::Encode::Unknown is Exception {
     has $.encoding;
@@ -20,6 +21,11 @@ my %encodings =
     'iso_8859-1' => &latin1,
     'latin1'     => &latin1,
     'latin-1'    => &latin1,
+
+    'windows-1252' => &cp1252,
+    'windows1252'  => &cp1252,
+    'cp-1252'      => &cp1252,
+    'cp1252'       => &cp1252,
 
     'utf8'       => &utf8,
     'utf-8'      => &utf8,
@@ -47,4 +53,8 @@ sub utf8(Buf $buf) {
 
 sub ascii(Buf $buf) {
     $buf.decode('ascii');
+}
+
+sub cp1252(Buf $buf) {
+    $buf.list.map({ %Encode::Windows1252::map{$_} // $_ })>>.chr.join;
 }
