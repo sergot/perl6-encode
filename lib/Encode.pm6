@@ -58,3 +58,40 @@ sub ascii(Buf $buf) {
 sub cp1252(Buf $buf) {
     $buf.list.map({ %Encode::Windows1252::map{$_} // $_ })>>.chr.join;
 }
+
+=begin pod
+
+=head1 NAME
+
+Encode - character encodings
+
+=head1 SYNOPSIS
+
+    use Encode;
+    say Encode::decode('latin2', Buf.new(0xa3));
+
+=head1 DESCRIPTION
+
+=head2 Available encodings:
+
+=item utf-8 (utf8)
+=item iso-8859-2 (latin2)
+=item iso-8859-1 (latin1)
+=item windows-1252 (cp-1252)
+=item ascii
+
+=head1 ROUTINES
+
+=head2 routine decode
+
+    sub decode($encoding, Buf $buf) returns Str
+
+Returns decoded $buf.
+
+=head1 AUTHOR
+
+Filip Sergot (sergot)
+Website: filip.sergot.pl
+Contact: filip (at) sergot.pl
+
+=end pod
