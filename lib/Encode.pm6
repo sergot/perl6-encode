@@ -88,6 +88,8 @@ Encode - character encodings
 
 Returns decoded $buf.
 
+Throws X::Encode::Unknown exception if $encoding is not implemented.
+
 =head1 AUTHOR
 
 Filip Sergot (sergot)
